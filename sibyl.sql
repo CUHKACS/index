@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `sibyl` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `sibyl`;
 -- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
 -- Host: localhost    Database: sibyl
@@ -57,4 +59,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-05 23:15:03
+-- Dump completed on 2017-05-06  0:17:09
