@@ -23,19 +23,21 @@
 
   services = {
 
+    openssh = {
+      enable = true;
+      passwordAuthentication = true;
+    };
+
     mysql = {
       enable = true;
       package = pkgs.mysql;
       dataDir = "/var/db/mysql";
-      #initialDatabases = [
-      #  { name = ""; schema = /.sql; }
-      #];
     };
 
     phpfpm = {
       pools = {
         default = {
-          listen = "/var/run/php-fpm.sock";
+          listen = "127.0.0.1:9000";
           extraConfig = ''
             user = nobody
             pm = dynamic
@@ -67,10 +69,16 @@
               tryFiles = "$uri @php";
             };
             "@php" = {
-              extraConfig = "rewrite (.*) /index.php?$1 last;";
+              extraConfig = ''
+                rewrite (.*) /index.php?$1 last;
+              '';
             };
             "~ \.php$" = {
-              extraConfig = "fastcgi_pass unix:/var/run/php-fpm.sock;";
+              extraConfig = ''
+                include ${pkgs.nginx}/conf/fastcgi_params;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_pass 127.0.0.1:9000;
+              '';
             };
           };
         };
@@ -79,3 +87,4 @@
 
   };
 }
+
