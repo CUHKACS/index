@@ -1,5 +1,5 @@
 <?php
-$config["lang_dir"] = '/srv/http/index/lang/';
+$config["lang_dir"] = 'lang/';
 $config["lang_default"] = 'zh_hk';
 $config["db_address"] = 'localhost';
 $config["db_user"] = 'index';
