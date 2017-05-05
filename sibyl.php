@@ -16,6 +16,9 @@ abstract class SIBYL {
 	const FLAG_FINENCIAL		= 0x40000000;
 	const FLAG_SYSTEM_ADMIN		= 0x80000000;
 
+  // ACSoc IP match
+  const ACSOC_IP_REGEX = "/123\.255\.66\.131/";
+
 	// Permission Flags in an array
 	public static $pFlags;
 	// Exported SQL connection
@@ -70,7 +73,7 @@ abstract class SIBYL {
 					if($authQuery[1] == $_SERVER['REMOTE_ADDR'] && $timeRemain > 0) {
 						mysqli_query ( self::$sibylSQL, "UPDATE `sessions` SET `activity` = '" . date("Y-m-d H:i:s") . "' WHERE `token` = '$sibylKey'" );
 						self::$activeUID = $authQuery[0];
-						$localNetwork = preg_match("/10\.0.+/", $_SERVER['REMOTE_ADDR']);
+						$localNetwork = preg_match(ACSOC_IP_REGEX, $_SERVER['REMOTE_ADDR']);
 						for($i = 0; $i < 32; $i++) {
 							$flag = intval($authQuery[3]) & (1<<$i);
 							if($i > 23 && !$localNetwork) {
@@ -115,7 +118,7 @@ abstract class SIBYL {
 						VALUES ('$sessionUID','$sessionToken','$sessionIP','$sessionTime')");
 						setcookie('sibylkey', $sessionToken, time()+86400, '/');
 						self::$activeUID = $sessionUID;
-						$localNetwork = preg_match("/10\.0.+/", $_SERVER['REMOTE_ADDR']);
+						$localNetwork = preg_match(ACSOC_IP_REGEX, $_SERVER['REMOTE_ADDR']);
 						for($i = 0; $i < 32; $i++) {
 							$flag = intval($authQuery[1]) & (1<<$i);
 							if($i > 23 && !$localNetwork) {
@@ -124,7 +127,11 @@ abstract class SIBYL {
 								self::$userPermission |= $flag;
 							}
 						}
-						self::$displayMessege = "Logged in as: " . $sessionUID;
+            if($localNetwork) {
+						  self::$displayMessege = "Logged in as: " . $sessionUID . " (from ACSoc)";
+            } else {
+						  self::$displayMessege = "Logged in as: " . $sessionUID;
+            }
 					} else {
 						self::$displayMessege = "Invalid email/SID or password.";
 					}
