@@ -1,0 +1,32 @@
+body{
+	font-family: Arial, 'SimSun';
+	font-size:12px;
+	margin:10px;
+	line-height:20px;
+}
+input{
+	border:1px solid #666;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+.table td{
+	cursor:default;
+	border:1px solid #666;
+	padding:3px;
+	white-space: nowrap;
+}
+.table tr{
+}
+.table tr:hover{
+	background:#EEE;
+}
+#memberlist tr:first-child{
+	background:#CCC;
+}
+#memberlist tr{
+	line-height:20px;
+}
+#editor tr{
+	line-height:25px;
+}

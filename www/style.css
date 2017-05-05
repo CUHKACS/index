@@ -1,0 +1,153 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body{
+	font-family: Arial, 'SimSun';
+	font-size:14px;
+	margin:0;
+	overflow-y:scroll;
+	background:url(image/bg.jpg);
+	background-position:center center;
+	background-repeat:no-repeat;
+    background-attachment:fixed;
+	background-size:cover;
+	text-shadow:1px 1px 2px #BBB;
+	line-height:20px;
+	margin-bottom: 80px;
+}
+a, a:visited{
+	color:#33F;
+	text-decoration:none;
+}
+a:hover{
+	color:#99F;
+	text-decoration:underline;
+}
+input{
+	border:1px solid #666;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+ol{
+	list-style-type: upper-roman;
+	margin-left:40px;
+}
+ol li{
+	margin:5px;
+}
+#topright{
+	position:fixed;
+	top:0;
+	right:0;
+	text-align:right;
+	line-height:24px;
+}
+#wrap {
+	text-align:center;
+}
+#footer{
+	left:0;
+	right:0;
+	text-align:left;
+	clear:both;
+	position:absolute;
+	bottom:0;
+	height:60px;
+	font-size:12px;
+	line-height:25px;
+	color:#000;
+	background-color:rgba(255,255,255,0.5);
+	background-image:url('image/grid.png');
+	padding:5px;
+}
+#logo{
+	max-height:150px;
+}
+.block{
+	background:rgba(255,255,255,0.7);
+	background-image:url('image/dot.png');
+	box-shadow:0 0 10px #333;
+	padding:5px;
+	border-radius:3px;
+	margin:auto;
+	text-align:left;
+	min-width:500px;
+	display:inline-block;
+}
+#borrow-form{
+	background:rgba(255,255,255,0.9);
+	box-shadow:0 0 10px #333;
+	padding:5px;
+	border-radius:3px;
+	width:900px;
+	margin:auto;
+}
+#borrow-form #item_id{
+	width:350px;
+}
+.ui-autocomplete {
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.ui-widget{
+	background:rgba(255,255,255,0.9);
+	font-size:14px;
+	font-family: Arial, 'SimSun';
+}
+.ui-menu .ui-menu-item a.ui-corner-all:hover, .ui-menu .ui-menu-item a.ui-corner-all:focus, .ui-menu .ui-menu-item a.ui-corner-all:active {
+    background:rgba(255,255,255,0.9)!important;
+    color:#000;
+}
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+    background: rgba(235,235,255,1);
+    border: none;
+    color:#000;
+    font-weight: normal;
+}
+#search{
+	width:300px;
+}
+.table{
+	margin:auto;
+	text-align:left;
+	line-height:16px;
+}
+.table td{
+	cursor:default;
+	border:1px solid #666;
+	padding:3px;
+	white-space: nowrap;
+}
+.table tr{
+}
+.table tr:hover{
+	background:rgba(255,255,255,1);
+}
+.table tr:first-child{
+	background:#CCC;
+}
+.table .title{
+	width:500px;
+}
+.table .author{
+	width:200px;
+}
+.table .location{
+	width:40px;
+}
+.table .id{
+	width:40px;
+}
+.table .volume{
+	width:40px;
+}
+.table .language{
+	width:60px;
+}
+.table .status{
+	width:80px;
+}

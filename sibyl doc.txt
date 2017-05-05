@@ -1,0 +1,54 @@
+=======================================
+SIBYL - Universal Authentication System
+=======================================
+
+Description:
+-----------------------------------------------------------------------
+A universal authentication system for all ACSOC online systems.
+The HTTP POST fields "sibyluid", "sibylukey" and "sibyllogout" and browser cookie "sibylkey" are used by the SIBYL system these should not be used by any user scripts.
+
+Dependencies:
+-----------------------------------------------------------------------
+- MySQL Database
+
+Usage:
+-----------------------------------------------------------------------
+require "sibyl.php" before <html>.
+
+API:
+-----------------------------------------------------------------------
+The SIBYL class provides 2 methods to check permissions for the currently logged in user.
+1. boolean SIBYL::checkFlag($flag)		- Check if the provided permission flag is set for the current user.
+2. boolean SIBYL::checkdDFlag($flag)	- Check if the provided permission flag has been degraded (due to non-LAN connection).
+Alternatively, the user flags could also be checked using the (int) SIBYL::$userPermission and (int) SIBYL::$userDegraded fields.
+
+UID of the currently logged in user can be checked using the (string) SIBYL::$activeUID field, this field will be null for guest sessions.
+
+Login:
+Send a HTTP POST request to a page containing "sibyl.php" with the fields "sibyluid" (UID) and "sibylukey" (base64 password).
+Logout:
+Send a HTTP POST request to a page containing "sibyl.php" with the field "sibyllogout".
+
+
+Authentication:
+-----------------------------------------------------------------------
+SIBYL authenticates users using an unique User ID (UID) and a password. 
+An UID could be either the user's CUHK Student ID (SID) or Email address for non-CUHK students. CUHK students may login using either their SID or Email.
+Passwords are UTF-8 strings that must be at least 8 characters long, they are stored as base64 encoded strings in the database.
+
+User Permissions:
+-----------------------------------------------------------------------
+Since all ACSOC services are authenticated using the SIBYL system, permissions are managed using permission flags and could be set or unset for each user.
+Permission flags are implimented as a 32-bit integger in the database and could be accessed via bitwise operations, however it is highly encouraged that the SIBYL API is used instead.
+
+Account Activation:
+-----------------------------------------------------------------------
+New accounts are inactive until email verification is done, inactive accounts can login but no permissions will be provided.
+
+Login Sessions:
+-----------------------------------------------------------------------
+SIBYL login sessions are managed via session keys for each logged in user, sessions keys are stored in the database and client cookies.
+Sessions are automatically destroyed after 30 mins of inactivity (no requests recieved with session key).
+For each session, the session key and client IP are pared such that the session will be destroyed if the client were to change IPs.
+Furthermore, some permissions are only allowed if the user is logged in from the local network (IP = 192.168.*.*).
+Session keys are generated upon successful login using the md5 of UID, client IP and current time.

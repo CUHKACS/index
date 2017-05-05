@@ -1,0 +1,16 @@
+Language code
+http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+
+Country
+http://en.wikipedia.org/wiki/List_of_country_calling_codes
+
+'MySQLi' for Beginners
+http://codular.com/php-mysqli
+
+md5.js
+https://github.com/wbond/md5-js
+
+password_hash
+http://php.net/manual/en/function.password-hash.php
+
+http://jqueryvalidation.org/validate/
