@@ -171,7 +171,7 @@ CREATE TABLE `series` (
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`soruly`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `borrow_item_frequency_view` AS select `borrow`.`item_id` AS `item_id`,count(1) AS `frequency` from `borrow` group by `borrow`.`item_id` order by count(1) desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -189,7 +189,7 @@ CREATE TABLE `series` (
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`soruly`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `borrow_series_frequency_view` AS select `item`.`series_id` AS `series_id`,sum(`borrow_item_frequency_view`.`frequency`) AS `frequency` from (`borrow_item_frequency_view` left join `item` on((`item`.`item_id` = `borrow_item_frequency_view`.`item_id`))) group by `item`.`series_id` order by sum(`borrow_item_frequency_view`.`frequency`) desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -207,7 +207,7 @@ CREATE TABLE `series` (
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`soruly`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `borrow_view` AS select `borrow`.`id` AS `id`,`borrow`.`sid` AS `sid`,`borrow`.`date_borr` AS `date_borr`,`borrow`.`date_due` AS `date_exp`,`borrow`.`date_return` AS `date_return`,`item`.`item_id` AS `item_id`,`item`.`series_id` AS `series_id`,`item`.`volume` AS `volume`,`item`.`entry_date` AS `entry_date`,`item`.`barcode` AS `barcode`,`item`.`language` AS `language`,`item`.`status` AS `status`,`series`.`title` AS `title`,`series`.`author` AS `author`,`series`.`location` AS `location` from ((`borrow` left join `item` on((`borrow`.`item_id` = `item`.`item_id`))) left join `series` on((`item`.`series_id` = `series`.`series_id`))) order by `borrow`.`date_borr` desc */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -225,7 +225,7 @@ CREATE TABLE `series` (
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`soruly`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `hot_series_view` AS select `series`.`series_id` AS `series_id`,`series`.`title` AS `title`,`series`.`author` AS `author`,`series`.`location` AS `location`,`borrow_series_frequency_view`.`frequency` AS `frequency` from (`borrow_series_frequency_view` left join `series` on((`borrow_series_frequency_view`.`series_id` = `series`.`series_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
@@ -243,7 +243,7 @@ CREATE TABLE `series` (
 /*!50001 SET character_set_results     = utf8mb4 */;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`soruly`@`localhost` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `item_view` AS select `item`.`item_id` AS `item_id`,`item`.`series_id` AS `series_id`,`series`.`title` AS `title`,`series`.`author` AS `author`,`item`.`volume` AS `volume`,`item`.`language` AS `language`,`series`.`location` AS `location`,`item`.`status` AS `status`,`item`.`barcode` AS `barcode`,`item`.`entry_date` AS `entry_date` from (`item` left join `series` on((`item`.`series_id` = `series`.`series_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
